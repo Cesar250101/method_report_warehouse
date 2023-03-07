@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <!--Actualizar Stock a Jumpseller-->
+        <record id="method_report_warehouse.ir_cron_calcula_vcto_lote" model="ir.cron">
+            <field name="name">Actualiza vencimiento de lote</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="stock.model_stock_production_lot"/>
+            <field name="state">code</field>
+            <field name="code">model.calcula_lote_vencido()</field>
+            <field name="active" eval="True" />
+        </record>      
+
+
+    </data>
+</odoo>
