@@ -17,7 +17,7 @@ class ProductProduct(models.Model):
         domain=[
             ('create_date','>=',fecha_nueva)
         ]
-        product_ids=self.search([('active','=',True)])
+        product_ids=self.search([('type','=','product')])
         location_internal_ids=self.env['stock.location'].search([('usage','=','internal')])
         location_ids=[]
         for l in location_internal_ids:
