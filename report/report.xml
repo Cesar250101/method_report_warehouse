@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Tree Vencimiento lotes -->
+    <!-- <record id="method_report_warehouse.vcto_lotes_tree" model="ir.ui.view">
+        <field name="model">method_report_warehouse.vcto_lotes</field>
+        <field name="arch" type="xml">
+            <tree string="Lotes" decoration-danger="lote_vencido">
+                <field name="categ_id"/>
+                <field name="descripcion"/>                
+                <field name="lote_id"/> 
+                <field name="fecha_vcto"/> 
+                <field name="ubicacion_id"/>                                
+                <field name="stock"/>
+                <field name="lote_vencido" invisible="1"/>
+                
+
+            </tree>
+        </field>
+    </record> -->
+
+<!-- Tree Reglas de Abastecimiento -->
+    <!-- <record id="method_report_warehouse.reglas_abastecimiento_tree" model="ir.ui.view">
+        <field name="model">method_report_warehouse.reglas_abastecimiento</field>
+        <field name="arch" type="xml">
+            <tree string="Reglas" decoration-danger="stock&lt;cantidad_minima">
+                <field name="categ_id"/>
+                <field name="product_id"/>                
+                <field name="location_id"/> 
+                <field name="stock"/> 
+                <field name="rotacion"/>
+                <field name="cantidad_minima"/>                                
+                <field name="cantidad_maxima"/>        
+            </tree>
+        </field>
+    </record> -->
+
+<!-- Pivot vencimiento de lotes -->
+    <record id="method_report_warehouse.vcto_lotes_pivot" model="ir.ui.view">
+        <field name="model">method_report_warehouse.vcto_lotes</field>
+        <field name="arch" type="xml">
+            <pivot string="Lotes" disable_linking="True">
+                <field name="categ_id" type="row"/>
+                <field name="descripcion" type="row"/>                
+                <field name="lote_id" type="row"/>                
+                <field name="stock" type="measure"/>
+
+            </pivot>
+        </field>
+    </record>
+
+<!-- Pivot Reglas de abastecimiento -->
+    <record id="method_report_warehouse.reglas_abastecimiento_pivot" model="ir.ui.view">
+        <field name="model">method_report_warehouse.reglas_abastecimiento</field>
+        <field name="arch" type="xml">
+            <pivot string="Reglas" disable_linking="True">
+                <field name="categ_id" type="row"/>
+                <field name="product_id" type="row"/>                
+                <field name="location_id" type="col"/>                
+                <field name="stock" type="measure"/>
+                <field name="cantidad_minima" type="measure"/>
+                <field name="cantidad_maxima" type="measure"/>
+                <field name="rotacion" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id="method_report_warehouse.vcto_lotes_graph" model="ir.ui.view">
+        <field name="model">method_report_warehouse.vcto_lotes</field>
+        <field name="arch" type="xml">
+            <graph string="Point of Sale Payment Analysis">
+                <field name="descripcion" type="row"/>
+                <field name="ubicacion_id" type="col"/>
+                <field name="stock" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+<!-- Search vencimiento lotes -->
+    <record id="method_report_warehouse.vcto_lotes_graphsearch" model="ir.ui.view">
+        <field name="model">method_report_warehouse.vcto_lotes</field>
+        <field name="arch" type="xml">
+            <search string="Vencimiento de lotes">
+                <field name="descripcion"/>
+                <separator/>
+                <field name="categ_id"/>
+                <group expand="1" string="Group By">
+                    <filter string="Categoria" name="categoria" context="{'group_by': 'categ_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+<!-- Search Reglas de Abastecimiento -->
+    <record id="method_report_warehouse.reglas_abastecimiento_graphsearch" model="ir.ui.view">
+        <field name="model">method_report_warehouse.reglas_abastecimiento</field>
+        <field name="arch" type="xml">
+            <search string="Quiebre o proximo quiebre de stock">
+                <separator/>            
+                <field name="product_id"/>
+                <field name="categ_id"/>
+                <filter string="Quiebre o proximo quiebre de stock" name="filter_to_quiebre" domain="[('quiebre', '=', True)]"/>
+                <separator/>
+                <group expand="1" string="Group By">
+                    <filter string="Categoria" name="categoria" context="{'group_by': 'categ_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+<!-- Acción Lotes -->
+    <record id="method_report_warehouse.report_lote_action" model="ir.actions.act_window">
+        <field name="name">Vencimiento de Lotes</field>
+        <field name="res_model">method_report_warehouse.vcto_lotes</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="context">{'group_by_no_leaf': 1, 'group_by': []}</field>
+    </record>
+
+<!-- Acción Reglas de Abastecimiento -->
+    <record id="method_report_warehouse.reglas_abastecimiento_action" model="ir.actions.act_window">
+        <field name="name">Reglas de Abastecimiento</field>
+        <field name="res_model">method_report_warehouse.reglas_abastecimiento</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="context">{'group_by_no_leaf': 1, 'group_by': []}</field>
+    </record>
+
+    <menuitem
+        id="method_report_warehouse.informe_vcto_lote"
+        name="Vencimiento lotes"
+        action="method_report_warehouse.report_lote_action"
+        parent="stock.menu_warehouse_report"
+        sequence="4"/>
+
+    <menuitem
+        id="method_report_warehouse.informe_reglas_abastecimiento"
+        name="Informe Reglas de Abastecimiento"
+        action="method_report_warehouse.reglas_abastecimiento_action"
+        parent="stock.menu_warehouse_report"
+        sequence="4"/>
+
+
+</odoo>
