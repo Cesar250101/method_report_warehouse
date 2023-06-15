@@ -18,6 +18,10 @@ class ProductProduct(models.Model):
             ('create_date','>=',fecha_nueva)
         ]
         product_ids=self.search([('active','=',True)])
+        location_internal_ids=self.env['stock.location'].search([('usage','=','internal')])
+        location_ids=[]
+        for l in location_internal_ids:
+            location_ids.append(l.id)
 
         for p in product_ids:
             domain=[
@@ -36,7 +40,21 @@ class ProductProduct(models.Model):
                     rotacion=stock/avg_cantidad
                 else:
                     rotacion=0
+
             else:
-                rotacion=0
+                domain=[
+                    ('date','>=',fecha_nueva),
+                    ('location_id','in',location_ids)
+                ]                
+                ventas_semanal=self.env['stock.move'].search(domain)
+                sum_cantidad=0
+                for v in ventas_semanal:
+                    sum_cantidad+=v.product_qty
+                avg_cantidad=sum_cantidad/semanas_a_restar
+                if avg_cantidad!=0:
+                    rotacion=stock/avg_cantidad
+                else:
+                    rotacion=0
+
             
             p.rotacion=rotacion
