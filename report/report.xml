@@ -11,15 +11,14 @@
                 <field name="fecha_vcto"/> 
                 <field name="ubicacion_id"/>                                
                 <field name="stock"/>
-                <field name="lote_vencido" invisible="1"/>
-                
+                <field name="lote_vencido" invisible="1"/>                
 
             </tree>
         </field>
     </record> -->
 
 <!-- Tree Reglas de Abastecimiento -->
-    <!-- <record id="method_report_warehouse.reglas_abastecimiento_tree" model="ir.ui.view">
+    <record id="method_report_warehouse.reglas_abastecimiento_tree" model="ir.ui.view">
         <field name="model">method_report_warehouse.reglas_abastecimiento</field>
         <field name="arch" type="xml">
             <tree string="Reglas" decoration-danger="stock&lt;cantidad_minima">
@@ -32,7 +31,7 @@
                 <field name="cantidad_maxima"/>        
             </tree>
         </field>
-    </record> -->
+    </record>
 
 <!-- Pivot vencimiento de lotes -->
     <record id="method_report_warehouse.vcto_lotes_pivot" model="ir.ui.view">
