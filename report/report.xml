@@ -121,13 +121,33 @@
     </record>
 
 <!-- Acción Reglas de Abastecimiento -->
-    <record id="method_report_warehouse.reglas_abastecimiento_action" model="ir.actions.act_window">
+    <!-- <record id="method_report_warehouse.reglas_abastecimiento_action" model="ir.actions.act_window">
         <field name="name">Reglas de Abastecimiento</field>
         <field name="res_model">method_report_warehouse.reglas_abastecimiento</field>
         <field name="view_type">form</field>
         <field name="view_mode">pivot,tree,graph</field>
         <field name="context">{'group_by_no_leaf': 1, 'group_by': []}</field>
-    </record>
+    </record> -->
+
+    <record id="method_report_warehouse.reglas_abastecimiento_action" model="ir.actions.act_window">
+            <field name="name">Reglas de Abastecimiento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">method_report_warehouse.reglas_abastecimiento</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,tree,graph</field>
+            <field name="context">{
+                }
+            </field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="method_report_warehouse.reglas_abastecimiento_graphsearch"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+              </p><p>
+                Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+              </p>
+            </field>
+        </record>    
 
     <menuitem
         id="method_report_warehouse.informe_vcto_lote"
