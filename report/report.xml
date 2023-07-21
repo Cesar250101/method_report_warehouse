@@ -21,8 +21,7 @@
     <record id="method_report_warehouse.reglas_abastecimiento_tree" model="ir.ui.view">
         <field name="model">method_report_warehouse.reglas_abastecimiento</field>
         <field name="arch" type="xml">
-            <!-- <tree string="Reglas" decoration-danger="stock&lt;cantidad_minima"> -->
-            <tree string="Reglas">
+            <tree string="Reglas" decoration-danger="stock&lt;cantidad_minima">
                 <field name="categ_id"/>
                 <field name="product_id"/>                
                 <field name="location_id"/> 
