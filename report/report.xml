@@ -94,7 +94,7 @@
     </record>
 
 <!-- Search Reglas de Abastecimiento -->
-    <!-- <record id="method_report_warehouse.reglas_abastecimiento_graphsearch" model="ir.ui.view">
+    <record id="method_report_warehouse.reglas_abastecimiento_graphsearch" model="ir.ui.view">
         <field name="model">method_report_warehouse.reglas_abastecimiento</field>
         <field name="arch" type="xml">
             <search string="Quiebre o proximo quiebre de stock">
@@ -108,7 +108,7 @@
                 </group>
             </search>
         </field>
-    </record> -->
+    </record>
 
 
 <!-- Acción Lotes -->
