@@ -21,14 +21,17 @@
     <record id="method_report_warehouse.reglas_abastecimiento_tree" model="ir.ui.view">
         <field name="model">method_report_warehouse.reglas_abastecimiento</field>
         <field name="arch" type="xml">
-            <tree string="Reglas" decoration-danger="stock&lt;cantidad_minima">
+            <!-- <tree string="Reglas" decoration-danger="stock&lt;cantidad_minima"> -->
+            <tree string="Reglas" fonts="bold:quiebre==True" colors="red:quiebre==True;">
                 <field name="categ_id"/>
                 <field name="product_id"/>                
                 <field name="location_id"/> 
                 <field name="stock"/> 
                 <field name="rotacion"/>
                 <field name="cantidad_minima"/>                                
-                <field name="cantidad_maxima"/>        
+                <field name="cantidad_maxima"/>   
+                <field name="quiebre"/>   
+                
             </tree>
         </field>
     </record>
